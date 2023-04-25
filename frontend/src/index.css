@@ -1,0 +1,136 @@
+body{
+  background-color: #0A4D68;
+}
+#form {
+  margin: 18vh 33vw 0 33vw;
+  padding: 3%;
+  border-radius: 25px;
+  border: 2px gray solid;
+  background-color: aqua;
+  font-size: large;
+  text-align: center;
+  justify-content: center;
+}
+
+.form-control {
+  text-align: center;
+
+}
+
+.form-group {
+  margin-top: 2%;
+}
+
+.form-group:active {
+  font-weight: bolder;
+  color: tomato;
+}
+
+#userpic {
+  /* width: 60%; */
+  background-color:aliceblue;
+}
+
+#side {
+  padding: 15px;
+}
+
+#userdetail {
+  width: 60%;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-container>.card {
+  width: 25%;
+}
+
+.card-image {
+  width: -webkit-fill-available;
+}
+#details>.card-body{
+  border-radius: 0 0 5px 5px;
+  background-color: rgb(97, 157, 231);
+}
+
+.logo {
+  width: 60%;
+}
+#loginlogo{
+  margin: 0;
+  width: 20%;
+  position: absolute;
+  top: 0;
+  left: 40%;
+  /* text-align: center; */
+}
+#addmoney {
+  display: inline;
+  position: absolute;
+  top: 3%;
+  right: 2%;
+}
+#mydetail{
+  padding: 2%;
+  height: 6%;
+  width: 60%;
+  background-color:rgb(52, 99, 138);
+  /* text-align: center; */
+  position:absolute;
+  bottom: 0;
+  left: 20%;
+  border-radius: 25px 25px 0 0;
+  color: aliceblue;
+}
+#link{
+  text-decoration: none;
+  color: aliceblue;
+}
+#body{
+  margin: 0;
+  padding: 0;
+  height: inherit;
+  /* background-color:rgba(0, 255, 255, 0.39); */
+  background-color:#0A4D68;
+  /* background-repeat: repeat-y; */
+}
+#UserDetail{
+  text-align: center;
+  padding: 20px;
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;   
+  width:35%; 
+  text-align: center;
+}
+#side{
+  margin-left:35%;
+  width:65%;
+  text-align: center;
+}
+.carditem{
+  margin-bottom: 30px;
+}
+#details{
+  display:inline-flex;
+  width: 80%;
+  text-align: left;
+  margin-left: 0;
+}
+#showseller{
+  position: sticky;
+}
+#item{
+  height: 75vh;
+}
+.piece{
+margin: 0 10px 0 10px;
+}
+#submit{
+  position: absolute;
+  right: 5%;
+}
