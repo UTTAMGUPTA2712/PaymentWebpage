@@ -1,14 +1,17 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-// import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import TransactionForm from "./transactionfile";
 function Transaction() {
+  
   const [user, setuser] = useState(JSON.parse(localStorage.getItem("user")))
-  const amount = JSON.parse(localStorage.getItem("amount"))
+  const [amount,setamount] = useState( JSON.parse(localStorage.getItem("amount")))
+  setInterval(()=>{
+      if(JSON.parse(localStorage.getItem("amount"))!=amount)setamount(JSON.parse(localStorage.getItem("amount")))
+  },1000) 
   const [show, setShow] = useState(false);
   const [addshow, setAddShow] = useState(false);
   const handleClose = () => {
@@ -19,17 +22,44 @@ function Transaction() {
   const [value, setvalue] = useState([])
   useEffect(() => {
     getdata()
-  }, [])
+  },[amount])
   const getdata = async () => {
     let data = await fetch("/transaction/" + user[0])
     data = await data.json()
     setvalue(data)
     console.log(data)
-  }
+  }  
+
+  
+    const downloadteansaction = () => {
+      fetch(`/download/${user[0]}`)
+        .then((response) => {
+          // Create a Blob from the response
+          return response.blob();
+        })
+        .then((blob) => {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${user[0]}Transactions.txt`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        })
+        .catch((error) => {
+          console.error("Error downloading file:", error);
+        });
+    };
+
+
+
   return (
     <>
+      <div style={{border:"2px double aliceblue",borderRadius:"5px",padding:"3px" ,textAlign:"left"}}>
       <h1>BALANCE: $ {amount}</h1>
-      <Button variant="danger" id="addmoney" onClick={() => { setAddShow(true) }}>+ Add Money</Button>
+      
+      <Button  variant="danger" id="addmoney" onClick={() => { setAddShow(true) }}>+ Add Money</Button>
       <Modal show={addshow} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Money in You Account</Modal.Title>
@@ -46,10 +76,13 @@ function Transaction() {
       <br />
       <Accordion bgcolor="yellow">
         <Accordion.Item eventKey="0">
-          <Accordion.Header><h5>Transactions for {user[0]}: </h5></Accordion.Header>
+          <Accordion.Header><h5>Transactions for {user[0]}: </h5>
+          
+          </Accordion.Header>
           <Accordion.Body>
             
-            <Table  striped hover>
+      <button id="download" onClick={downloadteansaction}>⬇️Download</button>
+            <Table responsive striped hover>
               <thead>
                 <tr>
                   <th>Transaction ID</th>
@@ -85,10 +118,15 @@ function Transaction() {
           <Modal.Title>Transaction detail</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h1>${data.amount}</h1>
-          <h3>Paid to :{data.seller}</h3>
+          <div id="tdbox">
+            <p className="colorit">Successful Payment</p>
+            <br/>
+            <h1 id="tdamount">${data.amount}</h1></div>
+            <br/>
+          <h3 id="tdseller">Paid to :{data.seller}</h3>
           <p>on: {data.time}</p>
-          reference: {data.id}
+          <br/><br/><hr/>
+          Reference Id: {data.id}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -96,6 +134,7 @@ function Transaction() {
           </Button>
         </Modal.Footer>
       </Modal>
+      </div>
     </>
   );
 }
