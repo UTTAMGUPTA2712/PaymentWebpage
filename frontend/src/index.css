@@ -55,7 +55,6 @@ body{
   border-radius: 0 0 5px 5px;
   background-color: rgb(97, 157, 231);
 }
-
 .logo {
   width: 60%;
 }
@@ -112,9 +111,7 @@ body{
   width:65%;
   text-align: center;
 }
-.carditem{
-  margin-bottom: 30px;
-}
+
 #details{
   display:inline-flex;
   width: 80%;
@@ -133,4 +130,35 @@ margin: 0 10px 0 10px;
 #submit{
   position: absolute;
   right: 5%;
+}
+.err{
+  color: aliceblue;
+  margin: 0;
+}
+#tdamount{
+  font-size: 10vh;
+  color: aliceblue;
+  bottom: 0;
+}
+#tdbox{
+  text-align: center;
+  height: 20vh;
+  background-color: #0A4D68;
+  border-radius: 5px;
+}
+.colorit{
+  color: aliceblue;
+  /* border-style: ; */
+}
+/* p{margin: ;} */
+#download{
+  font-size: 30px;
+  padding: 0;
+  /* box-sizing:content-box; */
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+  /* color:aliceblue; */
+}
+#download:hover{
+  opacity: .8;
 }
