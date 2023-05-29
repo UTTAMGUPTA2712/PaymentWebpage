@@ -1,4 +1,4 @@
 # PaymentWebpage
 
 
-[CHECK DEPLAY](https://flexipay2712.netlify.app/)
+[CHECK DEPLOY](https://flexipay2712.netlify.app/)
